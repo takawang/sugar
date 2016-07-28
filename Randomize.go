@@ -127,7 +127,7 @@ func Randomize(i interface{}, excluding ...interface{}) {
 		}
 	case reflect.Bool:
 		if iValue.CanSet() {
-			iValue.SetBool(rand.Intn(math.MaxInt64)%2 == 1)
+			iValue.SetBool(rand.Int63n(math.MaxInt64)%2 == 1)
 		}
 	}
 }
