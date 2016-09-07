@@ -39,19 +39,19 @@ func TestStruct(t *testing.T) {
 		return false
 	})
 
-	s.Assert("and finally this is a full demonstration of the logger", func(log sugar.Log) bool {
+	s.Assert("and finally this is a full demonstration of the logger", func(logf sugar.Log) bool {
 
-		log("by default, %s works like fmt.Printf", "sugar.Log")
+		logf("by default, %s works like fmt.Printf", "sugar.Log")
 
-		log("but, if you just pass in structs, it will print them with their field names")
-		log(&Struct{Field: "1"}, &Struct{Field: "2"}, &Struct{Field: "3"})
+		logf("but, if you just pass in structs, it will print them with their field names")
+		logf(&Struct{Field: "1"}, &Struct{Field: "2"}, &Struct{Field: "3"})
 
 		nestedLogger := sugar.NewLogger()
 		nestedLogger.Log("it is also possible to nest logs by creating a new logger")
-		log(nestedLogger)
+		logf(nestedLogger)
 
-		log("finally, log.Compare will compare any two interfaces and log the differences")
-		return log.Compare([]Struct{
+		logf("finally, log.Compare will compare any two interfaces and log the differences")
+		return logf.Compare([]Struct{
 			Struct{Field: "this equals the other one"},
 			Struct{Field: "this does not"},
 		}, []Struct{
